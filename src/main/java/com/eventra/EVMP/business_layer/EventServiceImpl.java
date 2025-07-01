@@ -42,6 +42,7 @@ public class EventServiceImpl implements EventService {
     public EventResponseDTO updateEvent(Long eventId, UpdateEventDTO dto) {
         validator.validateUpdateRequest(eventId, dto);
         Events_EIOP entity = getEventsById(eventId);
+        entity.setLastModifiedDate(LocalDateTime.now());
         mapper.updateEntity(entity, dto);
         return toDto(repoService.update(entity));
     }

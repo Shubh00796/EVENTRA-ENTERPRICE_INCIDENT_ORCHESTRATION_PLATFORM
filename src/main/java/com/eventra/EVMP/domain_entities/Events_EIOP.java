@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "events", indexes = {
+@Table(name = "events_for_eiop", indexes = {
         @Index(name = "idx_event_type", columnList = "event_type"),
         @Index(name = "idx_status", columnList = "status"),
         @Index(name = "idx_start_date", columnList = "start_date_time"),

@@ -1,5 +1,6 @@
 package com.eventra.EVMP.validations_utils;
 
+import com.eventra.EVMP.data_accesslayer.EventRepoService;
 import com.eventra.EVMP.dtos.CreateEventDTO;
 import com.eventra.EVMP.dtos.UpdateEventDTO;
 import com.eventra.EVMP.service_interface.EventService;
@@ -16,11 +17,12 @@ import java.util.Set;
 @Component
 @RequiredArgsConstructor
 public class EvnetEIOP_validator {
-    private final EventService eventService;
+    private final EventRepoService eventService;
     private final ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
     private final Validator validator = validatorFactory.getValidator();
 
-    public void validateCreateRequest( CreateEventDTO dto) {
+
+    public void validateCreateRequest(CreateEventDTO dto) {
         Objects.requireNonNull(dto, "event cannot be null");
         validateJsrViolations(dto);
     }
@@ -28,7 +30,7 @@ public class EvnetEIOP_validator {
     public void validateUpdateRequest(Long egventId, UpdateEventDTO dto) {
         Objects.requireNonNull(dto, "eventDTO cannot be null");
         validateJsrViolations(dto);
-        eventService.getEventById(egventId); // ensures customer exists
+        eventService.findById(egventId); // ensures customer exists
     }
 
     private <T> void validateJsrViolations(T dto) {
