@@ -1,4 +1,4 @@
-package com.eventra.EVMP.controllers;
+package com.eventra.EVMP.data_accesslayer;
 
 
 import com.eventra.EVMP.domain_entities.RegistrationsEIOP;

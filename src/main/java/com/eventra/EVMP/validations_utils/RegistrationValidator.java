@@ -1,6 +1,6 @@
 package com.eventra.EVMP.validations_utils;
 
-import com.eventra.EVMP.controllers.RegistrationRepoService;
+import com.eventra.EVMP.data_accesslayer.RegistrationRepoService;
 import com.eventra.EVMP.data_accesslayer.EventRepoService;
 import com.eventra.EVMP.domain_entities.Events_EIOP;
 import com.eventra.EVMP.dtos.CreateRegistrationDTO;
