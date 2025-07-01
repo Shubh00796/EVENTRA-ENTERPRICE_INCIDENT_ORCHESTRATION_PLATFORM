@@ -1,7 +1,10 @@
 package com.eventra.EVMP.data_accesslayer;
 
 
+import com.eventra.EVMP.domain_entities.EventStatus;
+import com.eventra.EVMP.domain_entities.EventType;
 import com.eventra.EVMP.domain_entities.Events_EIOP;
+import com.eventra.EVMP.domain_entities.VenueType;
 import com.eventra.EVMP.exceptions.ResourceNotFoundException;
 import com.eventra.EVMP.reposiotries.EventRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,15 +25,15 @@ public class EventRepoService {
                 .orElseThrow(() -> new ResourceNotFoundException("Event not found with ID: " + id));
     }
 
-    public Optional<Events_EIOP> findByEventCode(String eventCode) {
-        return eventRepository.findByEventCode(eventCode);
-    }
+    public Events_EIOP findByEventCode(String eventCode) {
+        return eventRepository.findByEventCode(eventCode)
+                .orElseThrow(() -> new ResourceNotFoundException("Event not found with ID: " + eventCode)); }
 
     public Page<Events_EIOP> findAll(Pageable pageable) {
         return eventRepository.findAll(pageable);
     }
 
-    public Page<Events_EIOP> findAllByStatus(String status, Pageable pageable) {
+    public Page<Events_EIOP> findAllByStatus(EventStatus status, Pageable pageable) {
         return eventRepository.findAllByStatus(status, pageable);
     }
 
@@ -39,8 +41,12 @@ public class EventRepoService {
         return eventRepository.findEventsInDateRange(start, end, pageable);
     }
 
-    public Page<Events_EIOP> findActiveEventsByType(String eventType, Pageable pageable) {
+    public Page<Events_EIOP> findActiveEventsByType(EventType eventType, Pageable pageable) {
         return eventRepository.findActiveEventsByType(eventType, pageable);
+    }
+
+    public Page<Events_EIOP> findEventsByVenueType(VenueType venueType, Pageable pageable) {
+        return eventRepository.findEventsByVenueType(venueType, pageable);
     }
 
     public Page<Events_EIOP> searchByOrganizer(String organizer, Pageable pageable) {

@@ -33,12 +33,21 @@ public class Events_EIOP {
 
     private String description;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     @NotNull
-    @Column(name = "event_type")
-    private String eventType;
+    private EventStatus status;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "event_type")
     @NotNull
-    private String status;
+    private EventType eventType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "venue_type")
+    @NotNull
+    private VenueType venueType;
+
 
     @NotNull
     @Column(name = "start_date_time")
@@ -51,9 +60,6 @@ public class Events_EIOP {
     @NotNull
     private String timezone;
 
-    @NotNull
-    @Column(name = "venue_type")
-    private String venueType;
 
     private String venueDetails;
 
