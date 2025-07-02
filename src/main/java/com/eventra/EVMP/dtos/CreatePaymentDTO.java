@@ -23,6 +23,10 @@ public class CreatePaymentDTO {
     private Long registrationId;
 
     @NotNull
+    private String paymentToken;            // <-- new field to pass “tok_visa”
+
+
+    @NotNull
     private BigDecimal amount;
 
     private String currency;

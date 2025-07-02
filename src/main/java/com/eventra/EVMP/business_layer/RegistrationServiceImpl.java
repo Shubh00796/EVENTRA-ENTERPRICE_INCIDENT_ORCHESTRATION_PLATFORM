@@ -10,6 +10,7 @@ import com.eventra.EVMP.dtos.UpdateRegistrationDTO;
 import com.eventra.EVMP.mappers.RegistrationMapper;
 import com.eventra.EVMP.service_interface.RegistrationService;
 import com.eventra.EVMP.validations_utils.RegistrationValidator;
+import com.eventra.EVMP.validations_utils.SystemClock;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,8 @@ public class RegistrationServiceImpl implements RegistrationService {
     private final RegistrationRepoService repoService;
     private final RegistrationMapper mapper;
     private final RegistrationValidator validator;
+    private final SystemClock systemClock;
+
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
@@ -33,7 +36,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         validator.validateCreateRequest(dto);
         RegistrationsEIOP registrationsEIOP = mapper.toEntity(dto);
         registrationsEIOP.setRegistrationNumber(UUID.randomUUID().toString());
-        registrationsEIOP.setCreatedDate(LocalDateTime.now());
+        registrationsEIOP.setCreatedDate(systemClock.now());
         return toDto(repoService.save(registrationsEIOP));
     }
 
@@ -43,7 +46,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         validator.validateUpdateRequest(registrationId, dto);
         RegistrationsEIOP registrationsEIOP = getRegistrationsEIOP(registrationId);
         mapper.updateEntity(registrationsEIOP, dto);
-        registrationsEIOP.setLastModifiedDate(LocalDateTime.now());
+        registrationsEIOP.setLastModifiedDate(systemClock.now());
         return toDto(repoService.save(registrationsEIOP));
     }
 

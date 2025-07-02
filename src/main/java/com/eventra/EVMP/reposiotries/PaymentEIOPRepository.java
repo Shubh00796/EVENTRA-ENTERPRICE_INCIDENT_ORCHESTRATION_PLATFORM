@@ -39,4 +39,6 @@ public interface PaymentEIOPRepository extends JpaRepository<PaymentEIOP, Long> 
 
     @Query("SELECT COUNT(p) FROM PaymentEIOP p WHERE p.status = :status")
     long countByStatus(@Param("status") PaymentStatus status);
+
+    boolean existsByPaymentReference(String paymentReference);
 }

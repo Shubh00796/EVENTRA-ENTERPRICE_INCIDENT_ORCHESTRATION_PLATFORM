@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public interface PaymentEIOPService {
+public interface PaymentService {
 
     PaymentResponseDTO createPayment(CreatePaymentDTO createPaymentDTO);
 

@@ -11,6 +11,7 @@ import com.eventra.EVMP.dtos.UpdateEventDTO;
 import com.eventra.EVMP.mappers.EventMapper;
 import com.eventra.EVMP.service_interface.EventService;
 import com.eventra.EVMP.validations_utils.EvnetEIOP_validator;
+import com.eventra.EVMP.validations_utils.SystemClock;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,13 +28,15 @@ public class EventServiceImpl implements EventService {
     private final EventRepoService repoService;
     private final EventMapper mapper;
     private final EvnetEIOP_validator validator;
+    private final SystemClock systemClock;
+
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public EventResponseDTO createEvent(CreateEventDTO dto) {
         validator.validateCreateRequest(dto);
         Events_EIOP entity = mapper.toEntity(dto);
-        entity.setCreatedDate(LocalDateTime.now());
+        entity.setCreatedDate(systemClock.now());
         entity.setStatus(EventStatus.ACTIVE);
         return toDto(repoService.save(entity));
     }
@@ -42,7 +45,7 @@ public class EventServiceImpl implements EventService {
     public EventResponseDTO updateEvent(Long eventId, UpdateEventDTO dto) {
         validator.validateUpdateRequest(eventId, dto);
         Events_EIOP entity = getEventsById(eventId);
-        entity.setLastModifiedDate(LocalDateTime.now());
+        entity.setLastModifiedDate(systemClock.now());
         mapper.updateEntity(entity, dto);
         return toDto(repoService.update(entity));
     }
