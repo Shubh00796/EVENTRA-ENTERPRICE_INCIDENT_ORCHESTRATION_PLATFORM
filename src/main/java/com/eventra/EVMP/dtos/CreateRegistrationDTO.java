@@ -1,7 +1,6 @@
 package com.eventra.EVMP.dtos;
 
 
-
 import com.eventra.EVMP.domain_entities.RegistrationStatus;
 import com.eventra.EVMP.domain_entities.TicketType;
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +9,7 @@ import lombok.Data;
 @Data
 public class CreateRegistrationDTO {
 
-    @NotNull
+    // This will be auto-generated in the service layer
     private String registrationNumber;
 
     @NotNull

@@ -24,8 +24,7 @@ public class RegistrationsEIOP {
     @Column(name = "registration_id")
     private Long registrationId;
 
-    @NotNull
-    @Column(name = "registration_number", unique = true, length = 30)
+    @Column(name = "registration_number")
     private String registrationNumber;
 
     @NotNull
