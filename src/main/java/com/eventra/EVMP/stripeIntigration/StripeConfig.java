@@ -19,5 +19,9 @@ public class StripeConfig {
     public void init() {
         Stripe.apiKey = secretKey;
     }
+
+    public void logStripeKeys() {
+        System.out.println("✅ Stripe Secret Key loaded: " + secretKey);
+    }
 }
 
