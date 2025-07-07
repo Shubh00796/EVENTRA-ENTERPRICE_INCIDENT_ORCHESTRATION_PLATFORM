@@ -16,6 +16,7 @@ import java.util.Map;
 public class Notification {
     private NotificationType type;
     private String recipient;
+    private String recipientName;
     private String subject; // optional
     private String message;
     private Map<String, String> metadata;

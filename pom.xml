@@ -114,6 +114,13 @@
 			<version>29.2.0</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.mailersend/java-sdk -->
+		<dependency>
+			<groupId>com.mailersend</groupId>
+			<artifactId>java-sdk</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
 
 
 	</dependencies>

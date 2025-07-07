@@ -20,7 +20,6 @@ public class IncidentService {
     public void createIncident(CreateIncidentDTO dto) {
         log.info("🚀 Creating incident: {}", dto);
 
-        // TODO: Add actual validation and persistence logic
 
         IncidentCreatedEvent event = new IncidentCreatedEvent(
                 dto.getIncidentId(),
