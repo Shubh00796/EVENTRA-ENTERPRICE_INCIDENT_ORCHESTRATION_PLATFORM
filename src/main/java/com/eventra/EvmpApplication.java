@@ -6,6 +6,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import java.util.Arrays;
+
 @SpringBootApplication(scanBasePackages = {
         "com.eventra",
         "com.eventra.incident"   ,
@@ -21,5 +23,7 @@ public class EvmpApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EvmpApplication.class, args);
+
+
     }
 }

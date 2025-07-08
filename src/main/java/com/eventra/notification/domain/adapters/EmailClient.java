@@ -18,7 +18,10 @@ public class EmailClient {
     @Value("${notification.email.from-name}")
     private String fromName;
 
-    public EmailClient(@Value("${notification.email.api-token}") String apiToken) {
+    public EmailClient(@Value("${notification.email.api-token:}") String apiToken) {
+        if (apiToken == null || apiToken.isBlank()) {
+            throw new IllegalArgumentException("❌ MAILERSEND_API_TOKEN is missing or empty.");
+        }
         this.mailerSend = new MailerSend();
         this.mailerSend.setToken(apiToken);
     }
